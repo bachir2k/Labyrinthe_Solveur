@@ -10,19 +10,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-/**
- * Panneau Swing affichant le labyrinthe sous forme graphique.
- *
- * <p>Palette de couleurs :</p>
- * <ul>
- *   <li>Mur — gris anthracite</li>
- *   <li>Passage — blanc cassé</li>
- *   <li>Départ — vert</li>
- *   <li>Sortie — rouge</li>
- *   <li>Chemin solution — bleu clair</li>
- *   <li>Cases explorées — bleu pâle translucide</li>
- * </ul>
- */
+// Boy barki yalla douma leine wakh dara , nieuwleine door li niou pareih , le montage sur la vidéo prend du temps boy 
 public class MazePanel extends JPanel {
 
     private static final Color C_WALL     = new Color(45,  45,  45);
@@ -43,7 +31,7 @@ public class MazePanel extends JPanel {
         setBackground(C_BG);
     }
 
-    // ---- API publique ----
+    
 
     public void setMaze(Maze maze) {
         this.maze        = maze;
@@ -69,7 +57,7 @@ public class MazePanel extends JPanel {
         repaint();
     }
 
-    // ---- Rendu ----
+    //Leigui niou xol loumouy dioxé fiiii
 
     @Override
     protected void paintComponent(Graphics g) {
@@ -88,7 +76,7 @@ public class MazePanel extends JPanel {
                 int      x    = offX + c * CELL_PX;
                 int      y    = offY + r * CELL_PX;
 
-                // Fond de la cellule
+                //Lii moy dernière partie cellule bi 
                 g2.setColor(pickBackground(cell, pos));
                 g2.fillRoundRect(x, y, CELL_PX - 2, CELL_PX - 2, 5, 5);
 
