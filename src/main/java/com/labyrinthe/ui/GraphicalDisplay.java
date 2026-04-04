@@ -21,22 +21,10 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-/**
- * Fenêtre principale de l'application graphique Swing.
- *
- * <p>Fonctionnalités :</p>
- * <ul>
- *   <li>Chargement d'un labyrinthe depuis un fichier .txt</li>
- *   <li>Génération aléatoire (taille paramétrable)</li>
- *   <li>Sauvegarde d'un labyrinthe généré</li>
- *   <li>Résolution par DFS, BFS, ou comparaison des deux</li>
- *   <li>Animation pas-à-pas de l'exploration avec contrôle de vitesse</li>
- *   <li>Affichage des statistiques de performance</li>
- * </ul>
- */
+//Boy comment vous faites pour utiliser VScode , j'deteste , moi Intellij reik wala sunlime text lay use 
 public class GraphicalDisplay extends JFrame {
 
-    // ---- Composants ----
+
     private final MazePanel   mazePanel  = new MazePanel();
     private final JTextArea   statsArea  = new JTextArea(7, 44);
     private final JComboBox<String> algoBox =
@@ -71,7 +59,7 @@ public class GraphicalDisplay extends JFrame {
         setLocationRelativeTo(null);
     }
 
-    // ---- Construction de l'interface ----
+    // Voilà nak , leigui fi moy interface biiiii
 
     private void buildUI() {
         setLayout(new BorderLayout(6, 6));
@@ -85,8 +73,7 @@ public class GraphicalDisplay extends JFrame {
         JPanel toolbar = new JPanel(new FlowLayout(FlowLayout.LEFT, 8, 6));
         toolbar.setBackground(PANEL_BG);
         toolbar.setBorder(new EmptyBorder(4, 6, 4, 6));
-
-        // --- Génération ---
+//On génére nak
         toolbar.add(darkLabel("Lignes:"));
         toolbar.add(styleSpinner(rowsSpin));
         toolbar.add(darkLabel("Colonnes:"));
@@ -101,7 +88,7 @@ public class GraphicalDisplay extends JFrame {
 
         toolbar.add(new JSeparator(SwingConstants.VERTICAL));
 
-        // --- Résolution ---
+        
         toolbar.add(darkLabel("Algo:"));
         styleCombo(algoBox);
         toolbar.add(algoBox);
