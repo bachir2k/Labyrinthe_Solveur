@@ -15,14 +15,8 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Scanner;
 
-/**
- * Point d'entrée du programme.
+
  *
- * <pre>
- *   java -jar labyrinthe.jar          → mode graphique (Swing)
- *   java -jar labyrinthe.jar console  → menu console interactif
- * </pre>
- */
 public class Main {
 
     public static void main(String[] args) {
@@ -33,9 +27,7 @@ public class Main {
         }
     }
 
-    // =========================================================================
-    // MODE CONSOLE INTERACTIF
-    // =========================================================================
+   
 
     private static void runConsoleMenu() {
         Scanner scanner = new Scanner(System.in);
@@ -150,10 +142,8 @@ public class Main {
         try { return Integer.parseInt(input.trim()); }
         catch (NumberFormatException e) { return defaultValue; }
     }
-
-    // =========================================================================
-    // MODE GRAPHIQUE
-    // =========================================================================
+//Oh lala meitina deih boy ah  
+    
 
     private static void runGuiMode() {
         SwingUtilities.invokeLater(() -> {
@@ -164,3 +154,5 @@ public class Main {
         });
     }
 }
+
+//Laylaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
