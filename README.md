@@ -1,5 +1,7 @@
 # 🧩 Résolution de Labyrinthe — ESP Dakar Master 1
 
+
+
 > **Cours** : Programmation et Algorithmique Avancée  
 > **Professeur** : Dr Mouhamed DIOP — École Supérieure Polytechnique de Dakar  
 > **Deadline** : 12 avril 2026  
@@ -19,6 +21,17 @@ Programme Java résolvant automatiquement un labyrinthe en utilisant deux algori
 Le programme fonctionne en **mode console interactif** et avec une **interface graphique Swing** (bonus).
 
 ---
+
+
+
+
+## Mais les gars , vous voyez , les fichiers markdown c'est dingue , c'est tellement pratique , c'est pour cette raion que j'vous disais que fallait maitriser cela Toi Bachir et ABdou Latif 
+
+
+
+
+
+
 
 ## 🗂️ Structure du projet
 
@@ -62,7 +75,7 @@ labyrinthe/
 
 ---
 
-## 🚀 Lancer le programme
+## Lancer le programme
 
 ### Prérequis
 - **Java 21+** — `java -version`
@@ -166,7 +179,8 @@ Tant que file non vide :
 | Mémoire | O(profondeur) | O(largeur) |
 | Complexité | O(V + E) | O(V + E) |
 
-> BFS garantit toujours le chemin le plus court en nombre de cases.  
+> BFS garantit toujours le chemin le plus court en nombre de cases.
+> C'est pour cela que les gars , moi j'préffère l'algo BFS , si j'suis coincé dans un labyrinthe nafa gueine reik hahahaha
 > DFS est souvent plus rapide mais peut trouver un chemin sous-optimal.
 
 ---
@@ -188,18 +202,18 @@ L'interface Swing permet de :
 
 | Membre | Rôle | Responsabilités |
 |--------|------|-----------------|
-| **[Prénom NOM]** | 🏗️ Architecture & Modèle | `model/`, `generator/`, `io/`, structure Maven |
-| **[Prénom NOM]** | 🧠 Algorithmes & Tests | `solver/`, tests JUnit, comparaison performances |
-| **[Prénom NOM]** | 🎨 Interface & Intégration | `ui/`, console colorée, Swing, animation, `Main.java` |
+| **[ABDOU LATIF SAADOU]** | 🏗️ Architecture & Modèle | `model/`, `generator/`, `io/`, structure Maven |
+| **[MOUHAMADOUL BACHIR SALL]** | 🧠 Algorithmes & Tests | `solver/`, tests JUnit, comparaison performances |
+| **[MOUSSA SOW]** | 🎨 Interface & Intégration | `ui/`, console colorée, Swing, animation, `Main.java` |
 
 ---
 
 ## 📦 Livrables
 
 - [x] Code source documenté sur GitHub
-- [ ] Vidéo YouTube de présentation (≤ 10 min)
-- [ ] Mail envoyé à `envoitp@gmail.com` — objet : `Projet_Labyrinthe_Gx`
+- [ ] Vidéo YouTube de présentation (≤ 10 min) QUi va vraiment me donner du fil à retordre halalala 
+- [ ] Mail envoyé à Monsieur Diop
 
 ---
 
-*Date de rendu : **12 avril 2026** (non extensible)*
+Mais bon j'espère qu'on aura fini avant le 12 Avril 
