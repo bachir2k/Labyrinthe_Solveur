@@ -4,10 +4,13 @@ import com.labyrinthe.model.Cell;
 import com.labyrinthe.model.Maze;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Lecture d'un labyrinthe depuis un fichier texte (.txt).
@@ -24,6 +27,7 @@ public class MazeFileReader {
 
     /**
      * Charge un labyrinthe depuis le fichier spécifié.
+     * Supporte les chemins absolus/relatifs et les ressources du classpath.
      *
      * @param path chemin vers le fichier texte
      * @return le labyrinthe chargé
@@ -31,14 +35,86 @@ public class MazeFileReader {
      * @throws IllegalArgumentException si le fichier est vide ou mal formé
      */
     public static Maze read(Path path) throws IOException {
-        List<String> lines = Files.readAllLines(path);
+        return read(path.toString());
+    }
 
+    /**
+     * Charge un labyrinthe depuis le fichier spécifié (chemin en String).
+     * Supporte les chemins absolus/relatifs et les ressources du classpath (mazes/...).
+     *
+     * @param pathString chemin vers le fichier texte
+     * @return le labyrinthe chargé
+     * @throws IOException              en cas d'erreur de lecture
+     * @throws IllegalArgumentException si le fichier est vide ou mal formé
+     */
+    public static Maze read(String pathString) throws IOException {
+        List<String> lines;
+        
+        // Essayer comme ressource du classpath d'abord
+        if (pathString.startsWith("mazes/")) {
+            lines = readFromClasspath("mazes/" + pathString.substring(6));
+            if (lines != null) {
+                return parseLines(lines);
+            }
+        }
+        
+        // Essayer comme fichier du système
+        Path path = Path.of(pathString);
+        if (Files.exists(path)) {
+            lines = Files.readAllLines(path);
+            return parseLines(lines);
+        }
+        
+        // Essayer comme ressource du classpath avec le nom simple
+        lines = readFromClasspath("mazes/" + pathString);
+        if (lines != null) {
+            return parseLines(lines);
+        }
+        
+        // Essayer sans le préfixe mazes/
+        lines = readFromClasspath(pathString);
+        if (lines != null) {
+            return parseLines(lines);
+        }
+        
+        throw new IOException("Fichier non trouvé : " + pathString);
+    }
+
+    /**
+     * Essaie de charger une ressource depuis le classpath.
+     * @return les lignes du fichier, ou null si non trouvé
+     */
+    private static List<String> readFromClasspath(String resourcePath) {
+        try {
+            InputStream is = MazeFileReader.class.getClassLoader()
+                    .getResourceAsStream(resourcePath);
+            if (is == null) {
+                return null;
+            }
+            String content = new String(is.readAllBytes(), StandardCharsets.UTF_8);
+            is.close();
+            // Normaliser les fins de ligne (supprimer \r et \n)
+            String[] rawLines = content.split("\\R");  // \\R = tous les séparateurs de ligne
+            List<String> lines = new ArrayList<>();
+            for (String line : rawLines) {
+                lines.add(line);
+            }
+            return lines;
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * Parse les lignes d'un labyrinthe.
+     */
+    private static Maze parseLines(List<String> lines) throws IOException {
         // Supprimer les lignes vides en fin de fichier
         while (!lines.isEmpty() && lines.getLast().isBlank()) {
-            lines.removeLast();
+            lines = new ArrayList<>(lines.subList(0, lines.size() - 1));
         }
         if (lines.isEmpty()) {
-            throw new IllegalArgumentException("Le fichier est vide : " + path);
+            throw new IllegalArgumentException("Le fichier est vide.");
         }
 
         // Détecter le format
@@ -125,7 +201,12 @@ public class MazeFileReader {
             String line = lines.get(r);
             for (int c = 0; c < cols; c++) {
                 char ch = c < line.length() ? line.charAt(c) : '#';
-                grid[r][c] = Cell.fromChar(ch);
+                // Les espaces sont traités comme des passages
+                if (ch == ' ') {
+                    grid[r][c] = Cell.PASSAGE;
+                } else {
+                    grid[r][c] = Cell.fromChar(ch);
+                }
             }
         }
 

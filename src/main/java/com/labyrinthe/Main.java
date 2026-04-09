@@ -104,10 +104,18 @@ public class Main {
     }
 
     private static Maze handleLoadFile(Scanner scanner) {
-        System.out.print("  Chemin du fichier (.txt) : ");
+        System.out.print("  Chemin du fichier (.txt) ou nom (ex: simple, medium, complex) : ");
         String path = scanner.nextLine().trim();
+        
+        // Si c'est juste un nom sans extension ni chemin, le chercher dans les ressources
+        if (!path.contains("/") && !path.contains("\\") && !path.endsWith(".txt")) {
+            path = "mazes/" + path + ".txt";
+        } else if (!path.endsWith(".txt")) {
+            path = path + ".txt";
+        }
+        
         try {
-            Maze m = MazeFileReader.read(Path.of(path));
+            Maze m = MazeFileReader.read(path);
             ConsoleDisplay.printSuccess("Labyrinthe chargé depuis : " + path);
             return m;
         } catch (IOException | IllegalArgumentException e) {
