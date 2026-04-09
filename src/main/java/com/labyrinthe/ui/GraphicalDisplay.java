@@ -26,7 +26,7 @@ public class GraphicalDisplay extends JFrame {
 
 
     private final MazePanel   mazePanel  = new MazePanel();
-    private final JTextArea   statsArea  = new JTextArea(7, 44);
+    private final JTextArea   statsArea  = new JTextArea(20, 25);
     private final JComboBox<String> algoBox =
             new JComboBox<>(new String[]{"DFS", "BFS", "DFS + BFS (comparaison)"});
     private final JSpinner rowsSpin = new JSpinner(new SpinnerNumberModel(15, 5, 99, 2));
@@ -42,7 +42,7 @@ public class GraphicalDisplay extends JFrame {
     private Thread          animThread;
 
     // ---- Couleurs UI ----
-    private static final Color BG_DARK   = new Color(30, 30, 30);
+    private static final Color BG_DARK   = new Color(15, 25, 45); // marine un peu dark
     private static final Color PANEL_BG  = new Color(40, 40, 40);
     private static final Color TEXT_FG   = new Color(220, 220, 220);
     private static final Color ACCENT    = new Color(52, 152, 219);
@@ -102,13 +102,6 @@ public class GraphicalDisplay extends JFrame {
         JButton btnClear = darkButton("⟳ Reset");
         toolbar.add(btnClear);
 
-        toolbar.add(new JSeparator(SwingConstants.VERTICAL));
-        toolbar.add(darkLabel("Vitesse:"));
-        speedSlider.setBackground(PANEL_BG);
-        speedSlider.setForeground(TEXT_FG);
-        speedSlider.setPreferredSize(new Dimension(100, 28));
-        toolbar.add(speedSlider);
-
         // Écouteurs
         btnGen.addActionListener(e  -> generateMaze());
         btnLoad.addActionListener(e -> loadFromFile());
@@ -133,7 +126,7 @@ public class GraphicalDisplay extends JFrame {
 
         JScrollPane mazeScroll = new JScrollPane(mazePanel);
         mazeScroll.setBackground(BG_DARK);
-        mazeScroll.getViewport().setBackground(new Color(28, 28, 28));
+        mazeScroll.getViewport().setBackground(BG_DARK);
         mazeScroll.setPreferredSize(new Dimension(560, 480));
         center.add(mazeScroll, BorderLayout.CENTER);
 
@@ -146,7 +139,7 @@ public class GraphicalDisplay extends JFrame {
                         BorderFactory.createLineBorder(new Color(60, 60, 60)), "Statistiques",
                         0, 0, null, TEXT_FG),
                 new EmptyBorder(4, 6, 4, 6)));
-        center.add(new JScrollPane(statsArea), BorderLayout.SOUTH);
+        center.add(new JScrollPane(statsArea), BorderLayout.EAST);
 
         return center;
     }
@@ -340,8 +333,8 @@ public class GraphicalDisplay extends JFrame {
 
     private JButton darkButton(String text) {
         JButton btn = new JButton(text);
-        btn.setBackground(new Color(60, 60, 60));
-        btn.setForeground(TEXT_FG);
+        btn.setBackground(Color.WHITE);
+        btn.setForeground(Color.BLACK);
         btn.setFocusPainted(false);
         return btn;
     }
