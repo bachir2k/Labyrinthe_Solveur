@@ -4,7 +4,7 @@
 
 > **Cours** : Programmation et Algorithmique Avancée  
 > **Professeur** : Dr Mouhamed DIOP — École Supérieure Polytechnique de Dakar  
-> **Deadline** : 12 avril 2026  
+> **Deadline** : On doit finir les gars avant le 12 
 > **Langage** : Java 21 | **Build** : Maven  
 
 ---
@@ -133,6 +133,9 @@ java -cp out com.labyrinthe.Main console  # Console
 | `S` | Point de départ |
 | `E` | Point d'arrivée (sortie) |
 | `+` | Chemin solution (après résolution) |
+
+
+Même si ici , on pouvait prendre S comme SORTIE et E comme ENTRÉE mais bon respectons lzs consignes de Monsieur Diop les gars ! 
 
 Les fichiers `.txt` de test se trouvent dans `src/main/resources/mazes/`.
 
