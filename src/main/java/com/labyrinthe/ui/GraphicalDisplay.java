@@ -26,14 +26,14 @@ public class GraphicalDisplay extends JFrame {
 
 
     private final MazePanel   mazePanel  = new MazePanel();
-    private final JTextArea   statsArea  = new JTextArea(20, 25);
+    private final JTextArea   statsArea  = new JTextArea(20, 63);
     private final JComboBox<String> algoBox =
             new JComboBox<>(new String[]{"DFS", "BFS", "DFS + BFS (comparaison)"});
     private final JSpinner rowsSpin = new JSpinner(new SpinnerNumberModel(15, 5, 99, 2));
     private final JSpinner colsSpin = new JSpinner(new SpinnerNumberModel(15, 5, 99, 2));
     private final JSlider  speedSlider = new JSlider(JSlider.HORIZONTAL, 10, 200, 60);
-    private final JButton  btnSolve    = new JButton("▶  Résoudre");
-    private final JButton  btnStop     = new JButton("⏹  Arrêter");
+    private final JButton  btnSolve    = darkButton("▶  Résoudre");
+    private final JButton  btnStop     = darkButton("⏹  Arrêter");
     private final JLabel   statusLabel = new JLabel("Prêt.");
 
     // ---- État ----
@@ -43,9 +43,9 @@ public class GraphicalDisplay extends JFrame {
 
     // ---- Couleurs UI ----
     private static final Color BG_DARK   = new Color(15, 25, 45); // marine un peu dark
-    private static final Color PANEL_BG  = new Color(40, 40, 40);
+    private static final Color PANEL_BG  = new Color(0, 0, 0);
     private static final Color TEXT_FG   = new Color(220, 220, 220);
-    private static final Color ACCENT    = new Color(52, 152, 219);
+    private static final Color ACCENT    = new Color(15, 25, 45);
 
     // -------------------------------------------------------------------------
 
@@ -341,7 +341,7 @@ public class GraphicalDisplay extends JFrame {
 
     private void styleButton(JButton btn, Color bg) {
         btn.setBackground(bg);
-        btn.setForeground(Color.WHITE);
+        btn.setForeground(Color.BLACK);
         btn.setFocusPainted(false);
         btn.setFont(btn.getFont().deriveFont(Font.BOLD));
     }
@@ -355,8 +355,8 @@ public class GraphicalDisplay extends JFrame {
     }
 
     private void styleCombo(JComboBox<String> box) {
-        box.setBackground(new Color(55, 55, 55));
-        box.setForeground(TEXT_FG);
+        box.setBackground(new Color(0,0,0));
+        box.setForeground(Color.black);
         box.setRenderer(new DefaultListCellRenderer() {
             @Override
             public Component getListCellRendererComponent(JList<?> list, Object value,
